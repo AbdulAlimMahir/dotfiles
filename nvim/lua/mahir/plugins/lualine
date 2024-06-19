@@ -1,0 +1,62 @@
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+    -- local icons = require "mahir.icons"
+    -- local lazyUpdate =
+
+    local diff = {
+      "diff",
+      colored = true,
+      symbols = {
+        added = " ",
+        modified = "󰝤 ",
+        removed = " ",
+      },
+    }
+
+    local diagnostics = {
+      "diagnostics",
+      sources = { "nvim_diagnostic", "coc" },
+      sections = { "error", "warn", "info", "hint" },
+      colored = true, -- Displays diagnostics status in color if set to true.
+      always_visible = false, -- Show diagnostics even if there are none.
+    }
+
+    local mode = {
+      "mode",
+      style = "mode_color",
+      icons_enabled = true,
+      fmt = function(str)
+        return str:sub(1, 1)
+      end,
+    }
+
+    require("lualine").setup({
+      options = {
+        -- theme = auto,
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+
+        ignore_focus = { "NvimTree" },
+      },
+      sections = {
+        -- lualine_a = { { "mode", fmt = function(str) return str:sub(1,1) end } },
+        lualine_a = { mode },
+        lualine_b = { "branch", diff },
+        lualine_c = { diagnostics },
+        lualine_x = {
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = "#ff9e64" },
+          },
+        },
+        lualine_y = { "filetype" },
+        lualine_z = { "location" },
+      },
+      extensions = { "quickfix", "man", "fugitive", "oil" },
+    })
+  end,
+}
