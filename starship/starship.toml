@@ -1,0 +1,96 @@
+[custom.right]
+command = ""
+when = "true"
+format = "[$cmd_duration]($style) "
+
+# Directory (path) configuration
+[directory]
+style = "blue"
+read_only = "🔒"
+truncation_length = 2
+truncate_to_repo = false  # Ensure the full path is shown, not just the repo
+format = "[$path]($style)[$read_only]($style)"
+
+[directory.substitutions]
+"Desktop" = " Desktop"
+"Documents" = "󱧶 Documents"
+"Downloads" = "󰉍 Downloads"
+"Pictures" = "󰉏 Pictures"
+"Videos" = "󱧺 Videos"
+"Music" = "󱍙 Music"
+"Mahir" = " Mahir"
+default = " "
+"~/" = ""  # For root directory
+
+# Git branch configuration
+[git_branch]
+symbol = " "
+style = "blue"
+format = "on [$branch]($style)"
+
+# Git status configuration
+[git_status]
+conflicted = ""
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+up_to_date = ""
+untracked = "…"
+staged = "+"
+modified = "±"
+renamed = "»"
+deleted = "✘"
+style = "bold yellow"
+
+
+[lua]
+format = ' [󰢱 $version](bold blue) '
+
+# Node.js version
+[nodejs]
+format = "[$symbol($version)]($style)"
+symbol = "󰎙"
+style = "green"
+
+# PHP version
+[php]
+format = "[$symbol($version)]($style)"
+symbol = "󰌟"
+style = "blue"
+
+# Python version
+[python]
+format = "[$symbol($version)]($style)"
+symbol = "󰌠"
+style = "yellow"
+
+# Julia version
+[julia]
+format = "[$symbol($version)]($style)"
+symbol = ""
+style = "magenta"
+
+# Ruby version
+[ruby]
+format = "[$symbol($version)]($style)"
+symbol = ""
+style = "red"
+
+# Go version
+[golang]
+format = "[$symbol($version)]($style)"
+symbol = ""
+style = "cyan"
+
+# Command duration
+# [cmd_duration]
+# min_time = 1  # Show command duration for commands longer than 1 second
+# format = "󱦟[$duration]($style)"
+# style = "yellow"
+
+# Status module
+[status]
+format = "[$symbol]($style)"
+symbol = "❯"
+style = "bold red"
+
