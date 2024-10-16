@@ -1,0 +1,242 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 2
+final_space = true
+auto_upgrade = true
+console_title_template = '{{ .Folder }} {{if .Root}}[root]{{end}}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true  #to add line after transient prompt
+
+# 1st Left Path Prompt
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'p:terminal-blue'
+    template = '{{ if matchP "Desktop" .Folder }} {{ else if matchP "Documents" .Folder }}󱧶 {{ else if matchP "Downloads" .Folder }}󰉍 {{ else if matchP "Pictures" .Folder }}󰉏 {{ else if matchP "Videos" .Folder }}󱧺 {{ else if matchP "Music" .Folder }}󱍙 {{ else if matchP "Mahir" .Folder }} {{ else }} {{ end }}{{ .Folder }}'
+
+    [blocks.segments.properties]
+      style = 'folder'
+
+  # 1st Left Git Prompt
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'p:pastal-grey'
+    foreground_templates = [
+      '{{ if or (.Working.Changed) (.Staging.Changed) }}p:terminal-red{{ end }}',
+      '{{ if and (gt .Ahead 0) (gt .Behind 0)}}<p:light-sky-blue> </p> {{ end }}',
+      '{{ if gt .Ahead 0 }}<p:terminal-blue>⇡</p>{{ end }}',
+      '{{ if gt .Behind 0 }}<p:celeste-blue>⇣</p>{{ end }}'
+    ]
+    template = ' {{ .HEAD }}'
+
+    [blocks.segments.properties]
+      fetch_status = true
+      branch_icon = ' '
+      cherry_pick_icon = ' '
+      commit_icon = ' '
+      merge_icon = ' '
+      no_commits_icon = '󰂕 '
+      rebase_icon = ' '
+      revert_icon = ' '
+      tag_icon = ' '
+
+# 1st Right Language Prompt
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hide'
+
+  [[blocks.segments]]
+    type = 'node'
+    style = 'plain'
+    foreground = 'green'
+    template = '󰎙 {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'php'
+    style = 'plain'
+    foreground = 'blue'
+    template = '󰌟 {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'plain'
+    foreground = 'yellow'
+    template = '󰌠 {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'julia'
+    style = 'plain'
+    foreground = 'magenta'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'ruby'
+    style = 'plain'
+    foreground = 'red'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'go'
+    style = 'plain'
+    foreground = 'p:light-sky-blue'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'crystal'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'dart'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'dotnet'
+    style = 'powerline'
+    foreground = 'black'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'elixir'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'haskell'
+    style = 'plain'
+    foreground = 'magenta'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'java'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'kotlin'
+    style = 'plain'
+    foreground = 'white'
+    template = '󱈙 {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'lua'
+    style = 'plain'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'ocaml'
+    style = 'plain'
+    foreground = '#d08770'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'perl'
+    style = 'plain'
+    background = '#4063D8'
+    foreground = 'white'
+    template = ' {{ .Full }}'
+
+  [[blocks.segments]]
+    type = 'r'
+    style = 'plain'
+    background = 'lightWhite'
+    foreground = 'blue'
+    template = '󰟔 {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'rust'
+    style = 'plain'
+    background = '#99908a'
+    foreground = '#193549'
+    template = '󱘗 {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'swift'
+    style = 'plain'
+    background = 'red'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'vala'
+    style = 'plain'
+    background = '#5E20A4'
+    foreground = 'white'
+    template = ' {{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'command'
+    style = 'plain'
+    foreground = 'p:white-blue'
+
+    [blocks.segments.properties]
+      command = 'git log --pretty=format:%cr -1 || date +%H:%M:%S'
+      shell = 'bash'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'p:terminal-yellow'
+    template = '󱦟 {{ .FormattedMs }}'
+
+    [blocks.segments.properties]
+      threshold = 999.0
+
+# 2nd Left Prompt Arrow
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground_templates = [
+      "{{if gt .Code 0}}p:terminal-red{{end}}",
+      "{{if eq .Code 0}}p:terminal-magenta{{end}}",
+    ]
+    template = '❯'
+
+# The PREVIOUS prompt
+[transient_prompt]
+  background = 'transparent'
+  foreground_templates = [
+    "{{ if gt .Code 0 }}p:terminal-red{{ end }}",
+    "{{ if eq .Code 0 }}p:terminal-magenta{{ end }}",
+  ]
+  template = '❯ '
+
+[secondary_prompt]
+  background = 'transparent'
+  foreground = 'p:terminal-magenta'
+  template = '❯❯ '
+
+[palette]
+  main-bg = '#24283b'
+  blue-bell = '#9aa5ce'
+  white-blue = '#9CABCA'
+  celeste-blue = '#b4f9f8'
+  light-sky-blue = '#7FB4CA'
+  terminal-blue = '#7E9CD8'
+  terminal-green = '#73daca'
+  blue-black = '#223249'
+  terminal-black = '#1e1e2e'
+  terminal-magenta = '#b4befe'
+  terminal-red = '#f7768e'
+  terminal-white = '#dce0e8'
+  terminal-yellow = '#E6C384'
+  pistachio-green = '#98BB6C'
+  pastal-grey = '#cfc9c2'

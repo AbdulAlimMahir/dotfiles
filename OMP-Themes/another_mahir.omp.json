@@ -1,0 +1,268 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{ .Folder }} {{if .Root}}[root]{{end}}",
+  "final_space": true,
+  "version": 2,
+  "palette": {
+    "main-bg": "#24283b",
+    "terminal-red": "#f7768e",
+    "pistachio-green": "#98BB6C",
+    "terminal-green": "#73daca",
+    "terminal-yellow": "#E6C384",
+    "terminal-blue": "#7E9CD8",
+    "blue-bell": "#9aa5ce",
+    "celeste-blue": "#b4f9f8",
+    "white-blue": "#9CABCA",
+    "light-sky-blue": "#7FB4CA",
+    "terminal-white": "#dce0e8",
+    "pastal-grey": "#cfc9c2",
+    "terminal-magenta": "#957FB8",
+    "blue-black": "#223249",
+    "terminal-black": "#1e1e2e"
+  },
+  "terminal_background": "p:main-bg",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "background": "transparent",
+          "foreground": "p:terminal-blue",
+          "template": "{{ if matchP \"Desktop\" .Folder }} {{ else if matchP \"Documents\" .Folder }}󱧶 {{ else if matchP \"Downloads\" .Folder }}󰉍 {{ else if matchP \"Pictures\" .Folder }}󰉏 {{ else if matchP \"Videos\" .Folder }}󱧺 {{ else if matchP \"Music\" .Folder }}󱍙 {{ else if matchP \"Mahir\" .Folder }}\uec15 {{ else }} {{ end }}{{ .Folder }}",
+          "properties": {
+            "style": "folder"
+          }
+        },
+
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:pastal-grey",
+          "background": "transparent",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:terminal-red{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0)}}<p:light-sky-blue> </p> {{ end }}",
+            "{{ if gt .Ahead 0 }}<p:terminal-blue>⇡</p>{{ end }}",
+            "{{ if gt .Behind 0 }}<p:celeste-blue>⇣</p>{{ end }}"
+          ],
+          "template": " {{ .HEAD }}",
+          "properties": {
+            "fetch_status": true,
+            "branch_icon": " ",
+            "commit_icon": " ",
+            "tag_icon": " ",
+            "rebase_icon": " ",
+            "cherry_pick_icon": " ",
+            "revert_icon": " ",
+            "merge_icon": " ",
+            "no_commits_icon": "󰂕 "
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "overflow": "hide",
+      "segments": [
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "p:pistachio-green",
+          "template": "󰎙 {{ .Full }} "
+        },
+        {
+          "type": "php",
+          "style": "plain",
+          "foreground": "p:terminal-blue",
+          "template": "󰌟 {{ .Full }} "
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:terminal-yellow",
+          "template": "󰌠 {{ .Full }}"
+        },
+        {
+          "type": "julia",
+          "style": "plain",
+          "foreground": "p:terminal-magenta",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "ruby",
+          "style": "plain",
+          "foreground": "p:terminal-red",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "go",
+          "style": "plain",
+          "foreground": "p:light-sky-blue",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "crystal",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "dart",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "dotnet",
+          "style": "powerline",
+          "foreground": "p:terminal-black",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "elixir",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "haskell",
+          "style": "plain",
+          "foreground": "p:terminal-magenta",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "kotlin",
+          "style": "plain",
+          "powerline_symbol": "",
+          "foreground": "p:terminal-white",
+          "template": "󱈙 {{ .Full }} "
+        },
+        {
+          "type": "lua",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "ocaml",
+          "style": "plain",
+          "foreground": "#d08770",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "perl",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "background": "#4063D8",
+          "template": " {{ .Full }}"
+        },
+        {
+          "type": "r",
+          "style": "plain",
+          "foreground": "blue",
+          "background": "lightWhite",
+          "template": "󰟔 {{ .Full }} "
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "foreground": "#193549",
+          "background": "#99908a",
+          "template": "󱘗 {{ .Full }} "
+        },
+        {
+          "type": "swift",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "background": "p:terminal-red",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "vala",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "background": "#5E20A4",
+          "template": " {{ .Full }} "
+        },
+        {
+          "type": "command",
+          "style": "plain",
+          "foreground": "p:white-blue",
+          "properties": {
+            "command": "git log --pretty=format:%cr -1 || date +%H:%M:%S",
+            "shell": "bash"
+          }
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "overflow": "hide",
+      "segments": [
+        {
+          "type": "ytm",
+          "style": "plain",
+          "foreground": "p:terminal-white",
+          "background": "p:terminal-red",
+          "properties": {
+            "playing_icon": " ",
+            "paused_icon": " ",
+            "stopped_icon": " "
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "background": "transparent",
+          "foreground": "p:terminal-yellow",
+          "template": "󱦟 {{ .FormattedMs }}",
+          "properties": {
+            "threshold": 1000
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "background": "transparent",
+          "foreground_templates": [
+            "{{if gt .Code 0}}p:terminal-red{{end}}",
+            "{{if eq .Code 0}}p:terminal-magenta{{end}}"
+          ],
+          "template": "❯"
+        }
+      ]
+    }
+  ],
+  "secondary_prompt": {
+    "background": "transparent",
+    "foreground": "p:terminal-magenta",
+    "template": "❯❯ "
+  },
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground_templates": [
+      "{{if gt .Code 0}}p:terminal-red{{end}}",
+      "{{if eq .Code 0}}p:terminal-magenta{{end}}"
+    ],
+    "template": "❯ "
+  }
+}
